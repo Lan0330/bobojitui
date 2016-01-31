@@ -1,0 +1,38 @@
+class MinStack {
+public:
+    void push(int x) {
+        if (!mystack.empty()) {
+            int min = mystack.top().second;
+            if (x < min) {
+                mystack.push(make_pair(x,x));
+            } else {
+                mystack.push(make_pair(x,min));
+            }
+        } else {
+            mystack.push(make_pair(x,x));
+        }
+    }
+
+    void pop() {
+        if (!mystack.empty()) {
+            mystack.pop();
+        }
+    }
+
+    int top() {
+        if (!mystack.empty()) {
+            return mystack.top().first;
+        }
+        return 0;
+    }
+
+    int getMin() {
+        if (!mystack.empty()) {
+            return mystack.top().second;
+        }
+        return 0;
+    }
+private:
+    stack<pair<int, int>> mystack;
+
+};
